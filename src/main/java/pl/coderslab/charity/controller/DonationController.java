@@ -28,7 +28,7 @@ public class DonationController {
         model.addAttribute("categories",categoryService.getCategories());
         model.addAttribute("institutions", institutionService.getInstitutions());
         model.addAttribute("donation", new Donation());
-        return "donationForm";
+        return "form";
     }
 
     @PostMapping("/addDonation")
