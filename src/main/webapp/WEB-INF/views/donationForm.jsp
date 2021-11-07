@@ -7,7 +7,7 @@
     Kategorie <form:checkboxes path="categories"
                                items="${categories}" itemLabel="name"/><br>
 
-    instytucja<form:select path="institution" items="${institutions}" itemLabel="name"/><br>
+    instytucja<form:select path="institution" items="${institutions}" itemLabel="name" multiple="true"/><br>
 
     kod pocztowy<form:input path="zipCode"/><br>
 

@@ -42,22 +42,22 @@
 
     <div class="steps--container">
         <div class="steps--item">
-            <span class="icon icon--hands"></span>
+            <img src="<c:url value="resources/images/icon-hands.png"/>"/>
             <h3>Wybierz rzeczy</h3>
             <p>ubrania, zabawki, sprzęt i inne</p>
         </div>
         <div class="steps--item">
-            <span class="icon icon--arrow"></span>
+            <img src="<c:url value="resources/images/icon-arrow.png"/>"/>
             <h3>Spakuj je</h3>
             <p>skorzystaj z worków na śmieci</p>
         </div>
         <div class="steps--item">
-            <span class="icon icon--glasses"></span>
+            <img src="<c:url value="resources/images/icon-glasses.png"/>"/>
             <h3>Zdecyduj komu chcesz pomóc</h3>
             <p>wybierz zaufane miejsce</p>
         </div>
         <div class="steps--item">
-            <span class="icon icon--courier"></span>
+            <img src="<c:url value="resources/images/icon-courier.png"/>"/>
             <h3>Zamów kuriera</h3>
             <p>kurier przyjedzie w dogodnym terminie</p>
         </div>
