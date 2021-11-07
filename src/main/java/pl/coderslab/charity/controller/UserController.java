@@ -7,7 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.coderslab.charity.model.User;
-import pl.coderslab.charity.service.UserService;
+import pl.coderslab.charity.service.UserServiceImpl;
 
 import javax.validation.Valid;
 
@@ -15,20 +15,25 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 
 public class UserController {
-    private final UserService userService;
+    private final UserServiceImpl userServiceImpl;
 
-@GetMapping("/register")
-    public String registerForm(Model model){
-    model.addAttribute("user", new User());
-    return "registerForm";
-}
-
-@PostMapping("/register")
-    public String register(@Valid User user, BindingResult result){
-    if(result.hasErrors()){
-        return "index";
+    @GetMapping("/register")
+    public String registerForm(Model model) {
+        model.addAttribute("user", new User());
+        return "registerForm";
     }
-    userService.createUser(user);
-    return "index";
-}
+
+    @PostMapping("/register")
+    public String register(@Valid User user, BindingResult result) {
+        if (result.hasErrors()) {
+            return "registerForm";
+        }
+        userServiceImpl.createUser(user);
+        return "login";
+    }
+
+//    @ModelAttribute
+//    public void principalUser(Model model, Principal principal) {
+//        model.addAttribute("principalUser", userServiceImpl.findByUsername(principal.getName()));
+//    }
 }
