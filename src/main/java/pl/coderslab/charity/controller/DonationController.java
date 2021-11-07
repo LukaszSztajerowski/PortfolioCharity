@@ -11,8 +11,10 @@ import pl.coderslab.charity.model.Donation;
 import pl.coderslab.charity.service.CategoryService;
 import pl.coderslab.charity.service.DonationService;
 import pl.coderslab.charity.service.InstitutionService;
+import pl.coderslab.charity.service.UserServiceImpl;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 @RequiredArgsConstructor
@@ -20,24 +22,28 @@ public class DonationController {
     private final DonationService donationService;
     private final CategoryService categoryService;
     private final InstitutionService institutionService;
+    private final UserServiceImpl userServiceImpl;
 
     @GetMapping("/addDonation")
     public String dontationForm(Model model) {
-        model.addAttribute("categories", categoryService.getCategories());
-        model.addAttribute("institutions", institutionService.getInstitutions());
         model.addAttribute("donation", new Donation());
         return "form";
     }
 
     @PostMapping("/addDonation")
-    public String addDonation(@Valid Donation donation, BindingResult result, Model model) {
+    public String addDonation(@Valid Donation donation, BindingResult result) {
         if (result.hasErrors()) {
             return "index";
         }
         donationService.createDonation(donation);
-        return "index";
+        return "form-confirmation";
     }
 
+    @ModelAttribute
+    public void categories(Model model){
+        model.addAttribute("categories", categoryService.getCategories());
+
+    }
     @ModelAttribute
     public void institutions(Model model) {
         model.addAttribute("institutions", institutionService.getInstitutions());
@@ -53,5 +59,9 @@ public class DonationController {
         model.addAttribute("numberOfDonations", donationService.getDonations().size());
     }
 
+    @ModelAttribute
+    public void principalUser(Model model, Principal principal){
+        model.addAttribute("principalUser", userServiceImpl.findByUsername(principal.getName()));
+    }
 
 }

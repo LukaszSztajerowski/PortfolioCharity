@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.charity.service.DonationService;
 import pl.coderslab.charity.service.InstitutionService;
-import pl.coderslab.charity.service.UserServiceImpl;
 
 
 @Controller
@@ -15,7 +14,7 @@ import pl.coderslab.charity.service.UserServiceImpl;
 public class HomeController {
     private final InstitutionService institutionService;
     private final DonationService donationService;
-    private final UserServiceImpl userServiceImpl;
+
 
 
     @RequestMapping("/")
@@ -37,5 +36,6 @@ public class HomeController {
     public void numberOfDonations(Model model) {
         model.addAttribute("numberOfDonations", donationService.getDonations().size());
     }
+
 
 }

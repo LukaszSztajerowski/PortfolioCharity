@@ -32,8 +32,9 @@ public class UserController {
         return "login";
     }
 
-//    @ModelAttribute
-//    public void principalUser(Model model, Principal principal) {
-//        model.addAttribute("principalUser", userServiceImpl.findByUsername(principal.getName()));
-//    }
+    @GetMapping("/login")
+    public String loginForm(){
+        return "login";
+    }
+
 }
