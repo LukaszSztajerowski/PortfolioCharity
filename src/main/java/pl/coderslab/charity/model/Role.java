@@ -1,15 +1,24 @@
 package pl.coderslab.charity.model;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
 @Entity
-@Table(name = "role")
+@Table(name = "roles")
+@Data
+@NoArgsConstructor
+
 public class Role {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "role_id")
-    private int id;
-    @Column(name = "role")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(unique = true, name = "role")
     private String name;
-//gettery, settery
+
+    public Role(String name) {
+        this.name = name;
+    }
 }
