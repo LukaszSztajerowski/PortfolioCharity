@@ -7,14 +7,14 @@
     <nav class="container container--70">
         <ul class="nav--actions">
             <li>Witaj ${principalUser.name}</li>
+            <li><a href="/logout">wyloguj</a> </li>
         </ul>
 
         <ul>
-            <li><a href="#" class="btn btn--without-border active">Start</a></li>
-            <li><a href="#" class="btn btn--without-border">O co chodzi?</a></li>
-            <li><a href="#" class="btn btn--without-border">O nas</a></li>
-            <li><a href="#" class="btn btn--without-border">Fundacje i organizacje</a></li>
-            <li><a href="#" class="btn btn--without-border">Kontakt</a></li>
+            <li><a href="/admin/institutions" class="btn btn--without-border active">fundacje</a></li>
+            <li><a href="/admin/admins" class="btn btn--without-border">admini</a></li>
+            <li><a href="/admin/users" class="btn btn--without-border">użytkownicy</a></li>
+            <li><a href="/admin/donations" class="btn btn--without-border">darowizny</a></li>
         </ul>
     </nav>
 
