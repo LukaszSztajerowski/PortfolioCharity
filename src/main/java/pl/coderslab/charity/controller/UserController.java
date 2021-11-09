@@ -25,11 +25,12 @@ public class UserController {
 
     @PostMapping("/register")
     public String register(@Valid User user, BindingResult result) {
+
         if (result.hasErrors()) {
             return "registerForm";
         }
         userServiceImpl.createUser(user);
-        return "login";
+        return "redirect:/";
     }
 
     @GetMapping("/login")
@@ -37,8 +38,4 @@ public class UserController {
         return "login";
     }
 
-    @PostMapping("/login")
-    public String login(){
-        return "login";
-    }
 }
