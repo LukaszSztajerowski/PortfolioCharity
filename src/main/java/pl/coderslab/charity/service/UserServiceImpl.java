@@ -37,10 +37,10 @@ public class UserServiceImpl implements UserService{
     @Override
     public void createUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        if (roleRepository.findByName("ROLE_USER") == null) {
-            user.getRoles().add(new Role("ROLE_USER"));
+        if (roleRepository.findByName("USER") == null) {
+            user.getRoles().add(new Role("USER"));
         } else {
-            user.getRoles().add(roleRepository.findByName("ROLE_USER"));
+            user.getRoles().add(roleRepository.findByName("USER"));
         }
         userRepository.save(user);
     }

@@ -160,6 +160,15 @@ document.addEventListener("DOMContentLoaded", function() {
         }
       });
 
+      document.querySelector("#quantityAndCategories-result").innerHTML = document.querySelector('#quantity').value + " worki " + document.querySelector('#categories').value;
+      document.querySelector("#institution-result").innerHTML = document.querySelector('#institution').value;
+      document.querySelector("#street-result").innerHTML = document.querySelector('#street').value;
+      document.querySelector("#city-result").innerHTML = document.querySelector('#city').value;
+      document.querySelector("#zipCode-result").innerHTML = document.querySelector('#zipCode').value;
+      document.querySelector("#pickUpDate-result").innerHTML = document.querySelector('#pickUpDate').value;
+      document.querySelector("#pickUpTime-result").innerHTML = document.querySelector('#pickUpTime').value;
+      document.querySelector("#pickUpComment-result").innerHTML = document.querySelector('#pickUpComment').value;
+
       this.$stepInstructions[0].parentElement.parentElement.hidden = this.currentStep >= 5;
       this.$step.parentElement.hidden = this.currentStep >= 5;
 

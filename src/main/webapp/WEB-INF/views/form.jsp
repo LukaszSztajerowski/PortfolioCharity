@@ -108,17 +108,7 @@
                     <button type="button" class="btn next-step">Dalej</button>
                 </div>
             </div>
-            <script>
-                var categories = $('#categories').val().innerText;
-                var quantity = $('#quantity').val().innerHTML;
-                var institution = $('#institution').val().innerHTML;
-                var zipCode = $('#zipCode').val();
-                var street = $('#street').val();
-                var city = $('#city').val();
-                var pickUpComment = $('#pickUpComment').val();
-                var pickUpDate = $('#pickUpDate').val();
-                var pickUpTime = $('#pickUpTime').val();
-            </script>
+
             <!-- STEP 6 -->
             <div data-step="5">
                 <h3>Podsumowanie Twojej darowizny</h3>
@@ -127,20 +117,15 @@
                     <div class="form-section">
                         <h4>Oddajesz:</h4>
                         <ul>
-                            <li>
+                            <li id="quantityAndCategories-result">
                                 <span class="icon icon-bag"></span>
-                                <span class="summary--text">
-                                    <script type="text/javascript">document.write(quantity)</script> worki
-                                  <script type="text/javascript">document.write(categories)</script>
-                                    dla
-                                </span>
-                            </li>
+                                <span class="summary--text"></span>
 
-                            <li>
+                            </li>
+                            <li id="institution-result">
                                 <span class="icon icon-hand"></span>
-                                <span class="summary--text"
-                                ><script type="text/javascript">document.write(institution)</script></span
-                                >
+                                <span class="summary--text">
+                                </span>
                             </li>
                         </ul>
                     </div>
@@ -149,9 +134,9 @@
                         <div class="form-section--column">
                             <h4>Adres odbioru:</h4>
                             <ul>
-                                <li><script type="text/javascript">document.write(street)</script></li>
-                                <li><script type="text/javascript">document.write(city)</script></li>
-                                <li><script type="text/javascript">document.write(zipCode)</script></li>
+                                <li id="street-result"></li>
+                                <li id="city-result"></li>
+                                <li id="zipCode-result"></li>
 
                             </ul>
                         </div>
@@ -159,9 +144,9 @@
                         <div class="form-section--column">
                             <h4>Termin odbioru:</h4>
                             <ul>
-                                <li><script type="text/javascript">document.write(pickUpDate)</script></li>
-                                <li><script type="text/javascript">document.write(pickUpTime)</script></li>
-                                <li><script type="text/javascript">document.write(pickUpComment)</script></li>
+                                <li id="pickUpDate-result"></li>
+                                <li id="pickUpTime-result"></li>
+                                <li id="pickUpComment-result"></li>
                             </ul>
                         </div>
                     </div>
