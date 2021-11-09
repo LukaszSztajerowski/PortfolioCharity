@@ -9,12 +9,14 @@ import pl.coderslab.charity.model.User;
 import pl.coderslab.charity.repository.RoleRepository;
 import pl.coderslab.charity.repository.UserRepository;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final BCryptPasswordEncoder passwordEncoder;
@@ -31,17 +33,14 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User findByUserEmail(String email){
+    public User findByUserEmail(String email) {
         return userRepository.findByEmail(email);
     }
+
     @Override
     public void createUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        if (roleRepository.findByName("USER") == null) {
-            user.getRoles().add(new Role("USER"));
-        } else {
-            user.getRoles().add(roleRepository.findByName("USER"));
-        }
+        user.setRoles(new HashSet<>(Arrays.asList(roleRepository.findByName("ROLE_USER"))));
         userRepository.save(user);
     }
 
