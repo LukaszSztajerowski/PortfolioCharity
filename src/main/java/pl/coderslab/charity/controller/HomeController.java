@@ -30,8 +30,7 @@ public class HomeController {
 
     @GetMapping("/homePage")
     public String homeActionAfterLogin(Model model, Principal principal){
-        User principalUser = userServiceImpl.findByUsername(principal.getName());
-//        System.out.println(principalUser.getName());
+        User principalUser = userServiceImpl.findByUserEmail(principal.getName());
         model.addAttribute("principalUser", principalUser);
         return "index";
     }
