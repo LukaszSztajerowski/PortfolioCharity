@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html>
 <html lang="pl">
@@ -6,8 +7,19 @@
 <header class="header--main-page">
     <nav class="container container--70">
         <ul class="nav--actions">
-            <li><a href="/login" class="btn btn--small btn--without-border">Zaloguj</a></li>
-            <li><a href="/register" class="btn btn--small btn--highlighted">Załóż konto</a></li>
+            <sec:authorize access="isAuthenticated()">
+                <li></lil>Witaj ${principalUser.name}</li>
+                <li>
+                    <form action="/logout" method="post">
+                        <input type="submit" value="Wyloguj">
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    </form>
+                </li>
+            </sec:authorize>
+            <sec:authorize access="isAnonymous()">
+                <li><a href="/login" class="btn btn--small btn--without-border">Zaloguj</a></li>
+                <li><a href="/register" class="btn btn--small btn--highlighted">Załóż konto</a></li>
+            </sec:authorize>
         </ul>
 
         <ul>

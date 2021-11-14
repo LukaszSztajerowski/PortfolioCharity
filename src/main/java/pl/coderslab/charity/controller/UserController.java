@@ -29,7 +29,7 @@ public class UserController {
             return "registerForm";
         }
         userServiceImpl.createUser(user);
-        return "login";
+        return "redirect:/";
     }
 
     @GetMapping("/login")
@@ -37,8 +37,8 @@ public class UserController {
         return "login";
     }
 
-    @PostMapping("/login")
-    public String login(){
-        return "login";
-    }
+//    @PostMapping("/login")
+//    public String login(){
+//        return "login";
+//    }
 }

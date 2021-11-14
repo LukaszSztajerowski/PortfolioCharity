@@ -32,7 +32,7 @@
         </div>
 
         <div class="form-group">
-            <form:input path="password" placeholder="password"/>
+            <form:input path="password" placeholder="password" type="password"/>
         </div>
 
         <div class="form-group form-group--buttons">
