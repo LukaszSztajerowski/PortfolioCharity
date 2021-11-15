@@ -47,9 +47,6 @@
                 <form:checkboxes path="categories"
                                  items="${categories}" itemLabel="name" multiple="true" id="categories"/>
 
-                <%
-
-                %>
 
                 <div class="form-group form-group--buttons">
                     <button type="button" class="btn next-step">Dalej</button>

@@ -17,7 +17,7 @@
 <body>
 <jsp:include page="adminheader.jsp"/>
 
-
+STRONA ADMINA
 
 
 <script src="<c:url value="resources/js/app.js"/>"></script>

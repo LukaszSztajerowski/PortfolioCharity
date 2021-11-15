@@ -6,8 +6,8 @@
 <header class="header--main-page">
     <nav class="container container--70">
         <ul class="nav--actions">
-            <li>Witaj ${principalUser.name}</li>
-            <li><a href="/logout">wyloguj</a> </li>
+<%--            <li>Witaj ${principalUser.name}</li>--%>
+<%--            <li><a href="/logout">wyloguj</a> </li>--%> do zmiany
         </ul>
 
         <ul>

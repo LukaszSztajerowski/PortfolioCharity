@@ -61,7 +61,7 @@ public class DonationController {
 
     @ModelAttribute
     public void principalUser(Model model, Principal principal){
-        model.addAttribute("principalUser", userServiceImpl.findByUsername(principal.getName()));
+        model.addAttribute("principalUser", userServiceImpl.findByUserEmail(principal.getName()));
     }
 
 }

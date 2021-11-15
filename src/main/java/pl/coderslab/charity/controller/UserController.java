@@ -1,15 +1,19 @@
 package pl.coderslab.charity.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.apache.jasper.tagplugins.jstl.core.When;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import pl.coderslab.charity.model.Role;
 import pl.coderslab.charity.model.User;
 import pl.coderslab.charity.service.UserServiceImpl;
 
 import javax.validation.Valid;
+import java.security.Principal;
+import java.util.Set;
 
 @Controller
 @RequiredArgsConstructor
@@ -37,8 +41,17 @@ public class UserController {
         return "login";
     }
 
-    @PostMapping("/login")
-    public String login(){
-        return "login";
+
+    @GetMapping("/admincheck")
+    public String admincheck(Principal principal){
+        User user = userServiceImpl.findByUserEmail(principal.getName());
+        Set<Role> roles = user.getRoles();
+        for (Role role : roles) {
+            while(role.getName().equals("ROLE_ADMIN")){
+                return "redirect:/admin";
+            }break;
+        }
+        return "redirect:/";
     }
+
 }
