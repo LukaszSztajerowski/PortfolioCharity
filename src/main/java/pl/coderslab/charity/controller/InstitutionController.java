@@ -19,9 +19,8 @@ public class InstitutionController {
     private final InstitutionService institutionService;
     private final UserServiceImpl userService;
 
-    @GetMapping("admin/institutions")
-    public String institutions(Model model){
-        model.addAttribute("institutions", institutionService.getInstitutions());
+    @GetMapping("/admin/institutions")
+    public String institutionList(){
         return "institutions";
     }
 
@@ -34,41 +33,46 @@ public class InstitutionController {
     @PostMapping("/admin/addInstitution")
     public String addInstitution(@Valid Institution institution, BindingResult result){
         if(result.hasErrors()){
-        return "adminPage";
+        return "institution";
         }
         institutionService.createInstitution(institution);
-        return "institutionList";
+        return "institution";
     }
 
-    @GetMapping("admin/editInstitution/{id}")
+    @GetMapping("/admin/editInstitution/{id}")
     public String editInstitutionForm(@PathVariable Long id, Model model){
         Optional<Institution> institutionByid = institutionService.readInstitution(id);
         if(institutionByid.isPresent()){
             model.addAttribute("institutionToEdit",institutionByid);
         return "editInstitutionForm";
         }
-        return "institutionList";
+        return "institution";
     }
 
-    @PutMapping("admin/editInstitution/{id}")
+    @PutMapping("/admin/editInstitution/{id}")
     public String editInstitution(@Valid Institution institution, BindingResult result){
         institutionService.updateInstitution(institution);
-        return "institutionList";
+        return "institution";
     }
 
-    @DeleteMapping("admin/deleteInstitution/{id}")
+    @DeleteMapping("/admin/deleteInstitution/{id}")
     public String deleteInstitutionForm(@PathVariable Long id, Model model){
         Optional<Institution> institutionByid = institutionService.readInstitution(id);
         if(institutionByid.isPresent()){
             institutionService.deleteInstitution(id);
-            return "institutionList";
+            return "institution";
         }
-        return "institutionList";
+        return "institution";
     }
 
     @ModelAttribute
     public void principalUser(Model model, Principal principal){
         model.addAttribute("principalUser", userService.findByUsername(principal.getName()));
+    }
+
+    @ModelAttribute
+    public void institutions(Model model){
+        model.addAttribute("institutions", institutionService.getInstitutions());
     }
 
 }
