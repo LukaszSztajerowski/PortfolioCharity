@@ -47,9 +47,9 @@ public class UserController {
         User user = userServiceImpl.findByUserEmail(principal.getName());
         Set<Role> roles = user.getRoles();
         for (Role role : roles) {
-            while(role.getName().equals("ROLE_ADMIN")){
+            if(role.getName().equals("ROLE_ADMIN")){
                 return "redirect:/admin";
-            }break;
+            }
         }
         return "redirect:/";
     }

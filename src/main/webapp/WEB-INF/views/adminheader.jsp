@@ -6,8 +6,13 @@
 <header class="header--main-page">
     <nav class="container container--70">
         <ul class="nav--actions">
-<%--            <li>Witaj ${principalUser.name}</li>--%>
-<%--            <li><a href="/logout">wyloguj</a> </li>--%> do zmiany
+            <li><p>Witaj <sec:authentication property="principal.username"/></p></li>
+            <li>
+                <form action="/logout" method="post">
+                    <input type="submit" value="Wyloguj">
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                </form>
+            </li>
         </ul>
 
         <ul>

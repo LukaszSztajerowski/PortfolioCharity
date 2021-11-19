@@ -6,6 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.model.Institution;
+import pl.coderslab.charity.repository.DonationRepository;
+import pl.coderslab.charity.service.DonationService;
 import pl.coderslab.charity.service.InstitutionService;
 import pl.coderslab.charity.service.UserServiceImpl;
 
@@ -18,10 +20,11 @@ import java.util.Optional;
 public class InstitutionController {
     private final InstitutionService institutionService;
     private final UserServiceImpl userService;
+    private final DonationRepository donationRepository;
 
     @GetMapping("/admin/institutions")
     public String institutionList(){
-        return "institutions";
+        return "institution";
     }
 
     @GetMapping("/admin/addInstitution")
@@ -49,17 +52,21 @@ public class InstitutionController {
         return "institution";
     }
 
-    @PutMapping("/admin/editInstitution/{id}")
+    @PostMapping("/admin/editInstitution")
     public String editInstitution(@Valid Institution institution, BindingResult result){
+        if(result.hasErrors()) {
+            return "institution";
+        }
         institutionService.updateInstitution(institution);
         return "institution";
     }
 
-    @DeleteMapping("/admin/deleteInstitution/{id}")
-    public String deleteInstitutionForm(@PathVariable Long id, Model model){
+    @GetMapping("/admin/deleteInstitution/{id}")
+    public String deleteInstitutionForm(@PathVariable Long id){
         Optional<Institution> institutionByid = institutionService.readInstitution(id);
         if(institutionByid.isPresent()){
             institutionService.deleteInstitution(id);
+            donationRepository.deleteDonationsByInstitutionId(id);
             return "institution";
         }
         return "institution";

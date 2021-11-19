@@ -114,14 +114,14 @@
                     <div class="form-section">
                         <h4>Oddajesz:</h4>
                         <ul>
-                            <li id="quantityAndCategories-result">
+                            <li>
                                 <span class="icon icon-bag"></span>
-                                <span class="summary--text"></span>
+                                <span class="summary--text" id="quantityAndCategories-result"></span>
 
                             </li>
-                            <li id="institution-result">
+                            <li >
                                 <span class="icon icon-hand"></span>
-                                <span class="summary--text">
+                                <span class="summary--text" id="institution-result">
                                 </span>
                             </li>
                         </ul>

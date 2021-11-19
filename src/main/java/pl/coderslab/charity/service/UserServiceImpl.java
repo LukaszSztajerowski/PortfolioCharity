@@ -64,4 +64,8 @@ public class UserServiceImpl implements UserService {
         return userList;
     }
 
+    public boolean haveRole(User user, Role role){
+//        if
+        return true;
+    }
 }

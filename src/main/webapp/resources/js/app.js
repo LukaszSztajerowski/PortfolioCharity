@@ -160,8 +160,8 @@ document.addEventListener("DOMContentLoaded", function() {
         }
       });
 
-      document.querySelector("#quantityAndCategories-result").innerHTML = "liczba worków: " + document.querySelector('#quantity').value
-      document.querySelector("#institution-result").innerHTML = document.querySelector('#institution').value;
+      document.querySelector("#quantityAndCategories-result").innerHTML = "liczba worków: " + document.querySelector('#quantity').value;
+      document.querySelector("#institution-result").innerHTML = document.querySelector('#institution'); // something is no yes
       document.querySelector("#street-result").innerHTML = document.querySelector('#street').value;
       document.querySelector("#city-result").innerHTML = document.querySelector('#city').value;
       document.querySelector("#zipCode-result").innerHTML = document.querySelector('#zipCode').value;

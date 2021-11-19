@@ -28,6 +28,12 @@ public class HomeController {
         return "index";
     }
 
+    @GetMapping("/admin")
+    public String admin() {
+        return "admin";
+    }
+
+
     @GetMapping("/homePage")
     public String homeActionAfterLogin(Model model, Principal principal){
         User principalUser = userServiceImpl.findByUserEmail(principal.getName());
