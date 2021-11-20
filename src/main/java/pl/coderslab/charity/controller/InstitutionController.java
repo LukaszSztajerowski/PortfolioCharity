@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.model.Institution;
 import pl.coderslab.charity.repository.DonationRepository;
+import pl.coderslab.charity.repository.InstitutionRepository;
 import pl.coderslab.charity.service.DonationService;
 import pl.coderslab.charity.service.InstitutionService;
 import pl.coderslab.charity.service.UserServiceImpl;
@@ -21,6 +22,7 @@ public class InstitutionController {
     private final InstitutionService institutionService;
     private final UserServiceImpl userService;
     private final DonationRepository donationRepository;
+    private final InstitutionRepository institutionRepository;
 
     @GetMapping("/admin/institutions")
     public String institutionList(){
@@ -39,14 +41,15 @@ public class InstitutionController {
         return "institution";
         }
         institutionService.createInstitution(institution);
-        return "institution";
+        return "redirect:/admin/institutions";
     }
 
     @GetMapping("/admin/editInstitution/{id}")
     public String editInstitutionForm(@PathVariable Long id, Model model){
-        Optional<Institution> institutionByid = institutionService.readInstitution(id);
-        if(institutionByid.isPresent()){
-            model.addAttribute("institutionToEdit",institutionByid);
+        Institution institutionObjectById = institutionRepository.findInstitutionById(id);
+        Optional<Institution> institutionOptionalById = institutionService.readInstitution(id);
+        if(institutionOptionalById.isPresent()){
+            model.addAttribute("institutionToEdit",institutionObjectById);
         return "editInstitutionForm";
         }
         return "institution";
@@ -58,7 +61,7 @@ public class InstitutionController {
             return "institution";
         }
         institutionService.updateInstitution(institution);
-        return "institution";
+        return "redirect:/admin/institutions";
     }
 
     @GetMapping("/admin/deleteInstitution/{id}")
@@ -69,7 +72,7 @@ public class InstitutionController {
             donationRepository.deleteDonationsByInstitutionId(id);
             return "institution";
         }
-        return "institution";
+        return "redirect:/admin/institutions";
     }
 
     @ModelAttribute

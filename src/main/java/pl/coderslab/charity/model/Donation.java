@@ -1,6 +1,7 @@
 package pl.coderslab.charity.model;
 
 import lombok.Data;
+import org.hibernate.action.internal.OrphanRemovalAction;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -16,9 +17,9 @@ public class Donation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Integer quantity; //liczba worków
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.REMOVE)
     private List<Category> categories;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     private Institution institution;
     private String street;
     private String city;

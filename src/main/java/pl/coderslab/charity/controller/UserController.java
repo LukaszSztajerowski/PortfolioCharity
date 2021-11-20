@@ -45,13 +45,11 @@ public class UserController {
     @GetMapping("/admincheck")
     public String admincheck(Principal principal){
         User user = userServiceImpl.findByUserEmail(principal.getName());
-        Set<Role> roles = user.getRoles();
-        for (Role role : roles) {
-            if(role.getName().equals("ROLE_ADMIN")){
-                return "redirect:/admin";
-            }
+        if(userServiceImpl.haveRole(user)){
+            return "redirect:/admin";
+        }else {
+            return "redirect:/";
         }
-        return "redirect:/";
     }
 
 }

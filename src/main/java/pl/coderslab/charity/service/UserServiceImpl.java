@@ -9,10 +9,8 @@ import pl.coderslab.charity.model.User;
 import pl.coderslab.charity.repository.RoleRepository;
 import pl.coderslab.charity.repository.UserRepository;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
+import java.security.Principal;
+import java.util.*;
 
 @Service
 
@@ -40,8 +38,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public void createUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRoles(new HashSet<>(Arrays.asList(roleRepository.findByName("ROLE_USER"))));
+        if (roleRepository.findByName("ROLE_USER") == null) {
+            user.getRoles().add(new Role("ROLE_USER"));
+        } else {
+            user.setRoles(new HashSet<>(Arrays.asList(roleRepository.findByName("ROLE_USER"))));
+        }
         userRepository.save(user);
+
     }
 
     public Optional<User> readUser(Long id) {
@@ -64,8 +67,7 @@ public class UserServiceImpl implements UserService {
         return userList;
     }
 
-    public boolean haveRole(User user, Role role){
-//        if
-        return true;
+    public boolean haveRole(User user){
+        return user.getRoles().stream().anyMatch(role -> role.getName().equals("ROLE_ADMIN"));
     }
 }

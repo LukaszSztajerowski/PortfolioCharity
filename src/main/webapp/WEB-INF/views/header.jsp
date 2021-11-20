@@ -8,7 +8,6 @@
     <nav class="container container--70">
         <ul class="nav--actions">
             <sec:authorize access="isAuthenticated()">
-                <li>Witaj ${principalUser.name}</li>
                 <li><p>Witaj <sec:authentication property="principal.username" /> </p></li>
                 <li>
                     <form action="/logout" method="post">
