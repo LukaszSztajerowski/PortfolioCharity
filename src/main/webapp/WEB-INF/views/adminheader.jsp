@@ -1,3 +1,4 @@
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
@@ -6,6 +7,7 @@
 <header class="header--main-page">
     <nav class="container container--70">
         <ul class="nav--actions">
+            <sec:authorize access="isAuthenticated()">
             <li><p>Witaj <sec:authentication property="principal.username"/></p></li>
             <li>
                 <form action="/logout" method="post">
@@ -13,11 +15,12 @@
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 </form>
             </li>
+            </sec:authorize>
         </ul>
 
         <ul>
             <li><a href="/admin/institutions" class="btn btn--without-border active">fundacje</a></li>
-            <li><a href="/admin/admins" class="btn btn--without-border">admini</a></li>
+            <li><a href="/admin/adminList" class="btn btn--without-border">admini</a></li>
             <li><a href="/admin/users" class="btn btn--without-border">użytkownicy</a></li>
             <li><a href="/admin/donations" class="btn btn--without-border">darowizny</a></li>
         </ul>

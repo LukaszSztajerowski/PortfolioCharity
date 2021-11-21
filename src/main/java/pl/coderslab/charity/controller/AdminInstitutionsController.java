@@ -18,7 +18,7 @@ import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
-public class InstitutionController {
+public class AdminInstitutionsController {
     private final InstitutionService institutionService;
     private final UserServiceImpl userService;
     private final DonationRepository donationRepository;

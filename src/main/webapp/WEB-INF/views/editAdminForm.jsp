@@ -9,7 +9,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Edycja instytucji</title>
+    <title>Edycja Admina</title>
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>"/>
 </head>
 <body>
@@ -18,21 +18,21 @@
 
 <section class="login-page">
     <h2>Załóż konto</h2>
-    <form:form method="post" action="/admin/editInstitution" modelAttribute="institutionToEdit">
+    <form:form method="post" action="/admin/editAdmin" modelAttribute="adminToEdit">
         <div class="form-group">
-            <form:input path="name" placeholder="${institutionToEdit.name}"/>
+            <form:input path="name" placeholder="${adminToEdit.name}"/>
         </div>
 
         <div class="form-group">
-            <form:input path="description" placeholder="${institutionToEdit.description}"/>
+            <form:input path="lastName" placeholder="${adminToEdit.lastName}"/>
         </div>
 
         <div class="form-group">
-            <form:hidden path="id" value="${institutionToEdit.id}"/>
+            <form:hidden path="id" value="${adminToEdit.id}"/>
         </div>
 
         <div class="form-group form-group--buttons">
-            <button class="btn" type="submit">Edytuj fundację</button>
+            <button class="btn" type="submit">Edytuj dane admina</button>
         </div>
     </form:form>
 </section>

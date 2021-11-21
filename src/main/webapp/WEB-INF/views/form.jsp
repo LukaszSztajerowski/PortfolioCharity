@@ -36,7 +36,7 @@
     </div>
 
     <div class="form--steps-container">
-        <div class="form--steps-counter">Krok <span>1</span>/4</div>
+        <div class="form--steps-counter">Krok <span>1</span>/5</div>
 
         <form:form method="post" action="/addDonation" modelAttribute="donation">
 
@@ -44,9 +44,23 @@
             <div data-step="1" class="active">
                 <h3>Zaznacz co chcesz oddać:</h3>
 
-                <form:checkboxes path="categories"
-                                 items="${categories}" itemLabel="name" multiple="true" id="categories"/>
+                    <%--                <form:checkboxes path="categories"--%>
+                    <%--                                 items="${categories}" itemLabel="name" multiple="true" id="categories"/>--%>
 
+                <c:forEach items="${categories}" var="category">
+                    <div class="form-group form-group--checkbox">
+                        <label>
+                            <input
+                                    type="checkbox"
+                                    name="categories"
+                                    value="${category.id}"
+                            />
+                            <span class="checkbox"></span>
+                            <span class="description">
+                                    ${category.name}</span>
+                        </label>
+                    </div>
+                </c:forEach>
 
                 <div class="form-group form-group--buttons">
                     <button type="button" class="btn next-step">Dalej</button>
@@ -60,7 +74,8 @@
                 <div class="form-group form-group--inline">
                     <label>
                         Liczba 60l worków:
-                        <form:input path="quantity" id="quantity"/> </label>
+                        <form:input path="quantity" id="quantity"/>
+                    </label>
 
                 </div>
 
@@ -71,13 +86,65 @@
             </div>
 
 
-            <!-- STEP 4 -->
+            <!-- STEP 3 -->
             <div data-step="3">
                 <h3>Wybierz organizacje, której chcesz pomóc:</h3>
 
-                <form:radiobuttons path="institution" items="${institutions}" itemLabel="name" id="institution"/>
+                    <%--                <form:radiobuttons path="institution" items="${institutions}" itemLabel="name" id="institution"/>--%>
+                <c:forEach items="${institutions}" var="institution">
+                    <div class="form-group form-group--checkbox">
+                        <label>
+                            <input type="radio" name="institution" value="${institution.id}"/>
+                            <span class="checkbox radio"></span>
+                            <span class="description">
+                                  <div class="title">${institution.name}</div>
+                                  <div class="subtitle">
+                                          ${institution.description}
+                                  </div>
+                            </span>
+                        </label>
+                    </div>
+                </c:forEach>
 
+                <div class="form-group form-group--buttons">
+                    <button type="button" class="btn prev-step">Wstecz</button>
+                    <button type="button" class="btn next-step">Dalej</button>
+                </div>
+            </div>
 
+            <!-- STEP 4 -->
+            <div data-step="4">
+                <h3>Podaj adres oraz termin odbioru rzecz przez kuriera:</h3>
+                <div class="form-group form-group--inline">
+                    <label>
+                        kod pocztowy<form:input path="zipCode" id="zipCode" pattern/><br>
+                    </label>
+                </div>
+                <div class="form-group form-group--inline">
+                    <label>
+                        ulica <form:input path="street" id="street"/><br>
+                    </label>
+                </div>
+                <div class="form-group form-group--inline">
+                    <label>
+                        miasto <form:input path="city" id="city"/><br>
+                    </label>
+                </div>
+                <div class="form-group form-group--inline">
+                    <label>
+                        komentarz<form:textarea path="pickUpComment" id="pickUpComment"/><br>
+                    </label>
+                </div>
+                <div class="form-group form-group--inline">
+                    <label>
+                        data doręczenia <form:input type="date" path="pickUpDate" id="pickUpDate"/><br>
+                    </label>
+                </div>
+                <div class="form-group form-group--inline">
+                    <label>
+                        godzina doręczenia <form:input type="time" path="pickUpTime" id="pickUpTime"/><br>
+                    </label>
+                </div>
                 <div class="form-group form-group--buttons">
                     <button type="button" class="btn prev-step">Wstecz</button>
                     <button type="button" class="btn next-step">Dalej</button>
@@ -85,28 +152,6 @@
             </div>
 
             <!-- STEP 5 -->
-            <div data-step="4">
-                <h3>Podaj adres oraz termin odbioru rzecz przez kuriera:</h3>
-
-                kod pocztowy<form:input path="zipCode" id="zipCode"/><br>
-
-                ulica <form:input path="street" id="street"/><br>
-
-                miasto <form:input path="city" id="city"/><br>
-
-                komentarz<form:textarea path="pickUpComment" id="pickUpComment"/><br>
-
-                data doręczenia <form:input type="date" path="pickUpDate" id="pickUpDate"/><br>
-
-                godzina doręczenia <form:input type="time" path="pickUpTime" id="pickUpTime"/><br>
-
-                <div class="form-group form-group--buttons">
-                    <button type="button" class="btn prev-step">Wstecz</button>
-                    <button type="button" class="btn next-step">Dalej</button>
-                </div>
-            </div>
-
-            <!-- STEP 6 -->
             <div data-step="5">
                 <h3>Podsumowanie Twojej darowizny</h3>
 
@@ -119,7 +164,7 @@
                                 <span class="summary--text" id="quantityAndCategories-result"></span>
 
                             </li>
-                            <li >
+                            <li>
                                 <span class="icon icon-hand"></span>
                                 <span class="summary--text" id="institution-result">
                                 </span>

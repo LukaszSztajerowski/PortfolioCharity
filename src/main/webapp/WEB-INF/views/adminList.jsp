@@ -10,7 +10,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>Admin Page</title>
+    <title>Admin Page - Lista Adminów</title>
 
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>"/>
 </head>
@@ -19,12 +19,16 @@
 <section class="about-us">
 <div class="help--slides active" data-id="1">
     <ul class="help--slides-items">
-        <c:forEach items="${admins}" var="adminUser">
+        <c:forEach items="${adminsList}" var="adminUser">
             <li>
                 <div class="col">
                     <div class="title">${adminUser.name} ${adminUser.lastName}</div>
+
                     <div class="subtitle">
-                        <a href="admin/addAdmin/${adminUser.name}"></a>
+                        <a href="admin/editAdmin/${adminUser.id}">edytuj dane administratora</a>
+                    </div>
+                    <div class="subtitle">
+                        <a href="admin/deleteAdminRole/${adminUser.id}">usuń dane administatora</a>
                     </div>
                 </div>
             </li>

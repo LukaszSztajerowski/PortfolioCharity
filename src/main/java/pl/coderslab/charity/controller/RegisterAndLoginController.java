@@ -18,7 +18,7 @@ import java.util.Set;
 @Controller
 @RequiredArgsConstructor
 
-public class UserController {
+public class RegisterAndLoginController {
     private final UserServiceImpl userServiceImpl;
 
     @GetMapping("/register")
