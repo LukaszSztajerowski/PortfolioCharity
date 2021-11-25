@@ -117,7 +117,7 @@
                 <h3>Podaj adres oraz termin odbioru rzecz przez kuriera:</h3>
                 <div class="form-group form-group--inline">
                     <label>
-                        kod pocztowy<form:input path="zipCode" id="zipCode" pattern/><br>
+                        kod pocztowy<form:input path="zipCode" id="zipCode"/><br>
                     </label>
                 </div>
                 <div class="form-group form-group--inline">
@@ -143,6 +143,8 @@
                 <div class="form-group form-group--inline">
                     <label>
                         godzina doręczenia <form:input type="time" path="pickUpTime" id="pickUpTime"/><br>
+
+
                     </label>
                 </div>
                 <div class="form-group form-group--buttons">
@@ -189,6 +191,7 @@
                                 <li id="pickUpDate-result"></li>
                                 <li id="pickUpTime-result"></li>
                                 <li id="pickUpComment-result"></li>
+
                             </ul>
                         </div>
                     </div>

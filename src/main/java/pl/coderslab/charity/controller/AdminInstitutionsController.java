@@ -12,6 +12,7 @@ import pl.coderslab.charity.service.DonationService;
 import pl.coderslab.charity.service.InstitutionService;
 import pl.coderslab.charity.service.UserServiceImpl;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.validation.Valid;
 import java.security.Principal;
 import java.util.Optional;
@@ -21,7 +22,6 @@ import java.util.Optional;
 public class AdminInstitutionsController {
     private final InstitutionService institutionService;
     private final UserServiceImpl userService;
-    private final DonationRepository donationRepository;
     private final InstitutionRepository institutionRepository;
 
     @GetMapping("/admin/institutions")
@@ -40,16 +40,17 @@ public class AdminInstitutionsController {
         if(result.hasErrors()){
         return "institution";
         }
+        institution.setActive(true);
         institutionService.createInstitution(institution);
         return "redirect:/admin/institutions";
     }
 
     @GetMapping("/admin/editInstitution/{id}")
     public String editInstitutionForm(@PathVariable Long id, Model model){
-        Institution institutionObjectById = institutionRepository.findInstitutionById(id);
         Optional<Institution> institutionOptionalById = institutionService.readInstitution(id);
+        Institution institutionToEdit = institutionOptionalById.get();
         if(institutionOptionalById.isPresent()){
-            model.addAttribute("institutionToEdit",institutionObjectById);
+            model.addAttribute("institutionToEdit",institutionToEdit);
         return "editInstitutionForm";
         }
         return "institution";
@@ -67,12 +68,13 @@ public class AdminInstitutionsController {
     @GetMapping("/admin/deleteInstitution/{id}")
     public String deleteInstitutionForm(@PathVariable Long id){
         Optional<Institution> institutionByid = institutionService.readInstitution(id);
+        Institution institution = institutionByid.get();
         if(institutionByid.isPresent()){
-            institutionService.deleteInstitution(id);
-            donationRepository.deleteDonationsByInstitutionId(id);
-            return "institution";
+        institution.setActive(false);
+        institutionService.createInstitution(institution);
+            return "redirect:/admin/institutions";
         }
-        return "redirect:/admin/institutions";
+        return "institution";
     }
 
     @ModelAttribute

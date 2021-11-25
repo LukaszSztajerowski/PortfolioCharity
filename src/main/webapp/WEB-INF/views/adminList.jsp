@@ -25,10 +25,10 @@
                     <div class="title">${adminUser.name} ${adminUser.lastName}</div>
 
                     <div class="subtitle">
-                        <a href="admin/editAdmin/${adminUser.id}">edytuj dane administratora</a>
+                        <a href="/admin/editAdmin/${adminUser.id}">edytuj dane administratora</a>
                     </div>
                     <div class="subtitle">
-                        <a href="admin/deleteAdminRole/${adminUser.id}">usuń dane administatora</a>
+                        <a href="/admin/deleteAdminRole/${adminUser.id}">usuń dane administatora</a>
                     </div>
                 </div>
             </li>

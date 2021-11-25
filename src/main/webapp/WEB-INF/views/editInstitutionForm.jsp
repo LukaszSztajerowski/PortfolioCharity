@@ -20,14 +20,17 @@
     <h2>Załóż konto</h2>
     <form:form method="post" action="/admin/editInstitution" modelAttribute="institutionToEdit">
         <div class="form-group">
-            <form:input path="name" placeholder="${institutionToEdit.name}"/>
+           <h3> nazwa fundacji</h3> <form:input path="name" placeholder="${institutionToEdit.name}"/>
         </div>
 
         <div class="form-group">
-            <form:input path="description" placeholder="${institutionToEdit.description}"/>
+            <h3>opis fundacji</h3> <form:input path="description" placeholder="${institutionToEdit.description}"/>
         </div>
 
         <div class="form-group">
+            <h3>czy fundacja/organizacja jest aktywna</h3>
+            Aktywna <form:radiobutton path="active" value="1"/>
+            Nie aktywna <form:radiobutton path="active" value="false"/>
             <form:hidden path="id" value="${institutionToEdit.id}"/>
         </div>
 

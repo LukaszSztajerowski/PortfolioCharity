@@ -30,6 +30,7 @@
             <li>
                 <div class="col">
                     <div class="title">${institutions[i.index].name}</div>
+                     <div class="subtitle">aktywna: ${institutions[i.index].active}</div>
                     <div class="subtitle"><a href="/admin/editInstitution/${institutions[i.index].id}">edytuj</a> </div>
                     <div class="subtitle"><a href="/admin/deleteInstitution/${institutions[i.index].id}">usuń</a> </div>
 
@@ -37,6 +38,7 @@
                 </div>
                 <div class="col">
                     <div class="title">${institutions[i.index+1].name}</div>
+                    <div class="subtitle">aktywna: ${institutions[i.index+1].active}</div>
                     <div class="subtitle"><a href="/admin/editInstitution/${institutions[i.index+1].id}">edytuj</a> </div>
                     <div class="subtitle"><a href="/admin/deleteInstitution/${institutions[i.index+1].id}">usuń</a> </div>
                 </div>

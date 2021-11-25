@@ -67,7 +67,15 @@ public class UserServiceImpl implements UserService {
         return userList;
     }
 
-    public boolean haveRole(User user){
-        return user.getRoles().stream().anyMatch(role -> role.getName().equals("ROLE_ADMIN"));
+    public List<User> getActiveUser(){
+        List<User> activeUserList = userRepository.findUsersByActiveEquals(true);
+        return activeUserList;
     }
+    public boolean haveRole(User user){
+        if(user.isActive()) {
+            return user.getRoles().stream().anyMatch(role -> role.getName().equals("ROLE_ADMIN"));
+        }else
+            return false;
+
+        }
 }

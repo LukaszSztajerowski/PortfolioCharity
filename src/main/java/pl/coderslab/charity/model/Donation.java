@@ -21,20 +21,28 @@ public class Donation {
     private Long id;
     @Min(value = 1,message = "możesz oddać minimum 1 worek")
     private Integer quantity; //liczba worków
-    @ManyToMany(cascade = CascadeType.REMOVE)
+
+    @ManyToMany
     private List<Category> categories;
-    @OneToOne(cascade = CascadeType.REMOVE)
+
+    @ManyToOne
     private Institution institution;
+
     @Size(min=2, message = "za krótka nazwa ulicy")
     private String street;
+
     @Size(min=2, message = "za krótka nazwa Miasta")
     private String city;
+
     @Pattern(regexp = "\\d\\d\\-\\d\\d\\d")
     private String zipCode;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate pickUpDate;
     private LocalTime pickUpTime;
     private String pickUpComment;
+    @ManyToOne
+    private User user;
 
 
 }

@@ -20,16 +20,21 @@
     <h2>Załóż konto</h2>
     <form:form method="post" action="/admin/editAdmin" modelAttribute="adminToEdit">
         <div class="form-group">
-            <form:input path="name" placeholder="${adminToEdit.name}"/>
+            imie <form:input path="name" placeholder="${adminToEdit.name}"/>
         </div>
 
         <div class="form-group">
-            <form:input path="lastName" placeholder="${adminToEdit.lastName}"/>
+            nazwisko <form:input path="lastName" placeholder="${adminToEdit.lastName}"/>
+            <h3>czy użytkownik jest aktywny</h3>
+            Aktywna <form:radiobutton path="active" value="1"/>
+            Nie aktywna <form:radiobutton path="active" value="false"/>
         </div>
 
-        <div class="form-group">
             <form:hidden path="id" value="${adminToEdit.id}"/>
-        </div>
+            <form:hidden path="email" value="${adminToEdit.email}"/>
+            <form:hidden path="password" value="${adminToEdit.password}"/>
+            <form:hidden path="roles" value="${adminToEdit.roles}"/>
+
 
         <div class="form-group form-group--buttons">
             <button class="btn" type="submit">Edytuj dane admina</button>

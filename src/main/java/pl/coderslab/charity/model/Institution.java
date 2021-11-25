@@ -3,6 +3,7 @@ package pl.coderslab.charity.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
@@ -13,4 +14,7 @@ public class Institution {
     private Long id;
     private String name;
     private String description;
+
+    @NotNull
+    private boolean active = true;
 }

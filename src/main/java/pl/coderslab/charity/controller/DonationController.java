@@ -1,6 +1,8 @@
 package pl.coderslab.charity.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,16 +27,18 @@ public class DonationController {
     private final UserServiceImpl userServiceImpl;
 
     @GetMapping("/addDonation")
-    public String dontationForm(Model model) {
+    public String dontationForm(Model model,Principal principal) {
+
         model.addAttribute("donation", new Donation());
         return "form";
     }
 
     @PostMapping("/addDonation")
-    public String addDonation(@Valid Donation donation, BindingResult result) {
+    public String addDonation(@Valid Donation donation, BindingResult result,@AuthenticationPrincipal UserDetails customUser) {
         if (result.hasErrors()) {
             return "index";
         }
+        donation.setUser(userServiceImpl.findByUserEmail(customUser.getUsername()));
         donationService.createDonation(donation);
         return "form-confirmation";
     }

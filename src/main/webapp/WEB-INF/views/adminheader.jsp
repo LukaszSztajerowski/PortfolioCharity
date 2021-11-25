@@ -21,7 +21,7 @@
         <ul>
             <li><a href="/admin/institutions" class="btn btn--without-border active">fundacje</a></li>
             <li><a href="/admin/adminList" class="btn btn--without-border">admini</a></li>
-            <li><a href="/admin/users" class="btn btn--without-border">użytkownicy</a></li>
+            <li><a href="/admin/usersList" class="btn btn--without-border">użytkownicy</a></li>
             <li><a href="/admin/donations" class="btn btn--without-border">darowizny</a></li>
         </ul>
     </nav>
